@@ -1,9 +1,7 @@
 name: Github Actions CI to build pdf from tex source.
 on: push
 
-permissions:
-  id-token: write
-  contents: read
+permissions: write-all
   
 jobs:
   build:
