@@ -1,0 +1,575 @@
+% CONTACT JEFF S @ UAB; ask for teaching
+
+\documentclass[11pt]{cv_wakeforest_article}
+\usepackage[]{graphicx}
+\usepackage[]{xcolor}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+
+
+\usepackage{cv_wakeforest_style}
+\usepackage{amsmath}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{url}
+\usepackage{pdfpages}
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{soul}  %Use \hl{Blah} for notes.
+\usepackage{float}
+%\usepackage{biber}
+%\usepackage[sorting=ynt,maxbibnames=99,style=ama]{biblatex}
+%
+
+
+
+%\usepackage[defernumbers=true, %style=musuos
+%	style=ama, sorting=ynt,maxnames=99,
+%	maxcitenames=99,
+%  maxbibnames=99]{biblatex}
+
+%\addbibresource{20240618.bib}
+
+\usepackage[numbers]{natbib}
+
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.}
+\makeatother
+\renewcommand{\bibsection}{}
+
+
+
+% BCJ Added 11/2/2021 to avoid getting compilation warnings
+\setlength{\headheight}{27.32324pt}
+
+% ---- Macros ---- %
+
+% \newcommand{\AR}[1]{\hl{#1}}  % highlighting sections for annual review.
+\newcommand{\AR}[1]{#1}  % no highlighting
+
+% misc formatting
+\newcommand{\mysection}[1]{\section*{#1}}
+\newcommand{\mysubsection}[1]{\subsection*{#1}}
+\newcommand{\myitem}{\item[]}
+\newcommand{\supref}[1]{$^\ref{#1}$}
+
+% convenience
+\newcommand{\lf}{\\ \> \>}
+\newcommand{\me}{{\bfseries Jaeger BC}}
+\newcommand{\PMID}[1]{\href{http://www.ncbi.nlm.nih.gov/pubmed/?term=#1}{PMID:  {#1}}}
+\newcommand{\PMCID}[1]{\href{http://www.ncbi.nlm.nih.gov/pmc/articles/#1/}{PMCID:  {#1}}}
+\newcommand{\DOI}[1]{\href{http://doi.org/#1}{DOI: {#1}}}  %starting in 2010?
+\newcommand{\mybox}{\rule{8pt}{8pt}}
+
+\pdfminorversion=4
+
+\rhead{\underline{\large Byron C. Jaeger}\\\today}
+
+% What is this?
+\cfoot{\thepage\ of \pageref{LastPageWTA}}
+
+\cfoot{\thepage}
+
+\renewcommand{\headrulewidth}{0pt}
+
+\addtolength{\headheight}{\baselineskip}
+\addtolength{\headheight}{1.1pt}
+\addtolength{\headsep}{-20pt}
+
+\renewcommand{\sectionmark}[1]{}
+\renewcommand{\subsectionmark}[1]{}
+
+\lhead{{\large\bfseries\leftmark}\\{\bfseries\rightmark}}
+
+\setlength{\parindent}{0pt}
+
+\newenvironment{packed_enum}{
+\begin{enumerate}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{enumerate}}
+
+\newenvironment{packed_item}{
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{itemize}}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, 	urlcolor=blue}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\thispagestyle{empty}
+
+\begin{center}
+{\bfseries\Large 
+WAKE FOREST SCHOOL OF MEDICINE \\ CURRICULUM VITAE \\[1em] (\today)
+}
+\end{center}
+
+\begin{tabbing}
+
+\hspace{1.85 in} \= \hspace{1.05in} \= \\
+
+\bfseries \large NAME
+
+\>\> Byron C. Jaeger, Ph.D. \\
+
+\\
+
+\bfseries \large CURRENT ACADEMIC TITLE
+
+\>\> Assistant Professor \\
+
+\\
+% {\bfseries\large \AR{ADMINISTRATIVE TITLE}}
+% \>\>\AR{Chair, Department of Biostatistics and Data Science}\\
+% \\
+
+\bfseries\large  ADDRESS
+
+%\>Residence \> 4101 Greenvale Court\\
+%\>\>Winston-Salem, North Carolina 27104\\
+%\>\>(336) 760-3410\\
+%\\
+
+%\> Business 
+\>\>Department of Biostatistics and Data Science\\
+\>\>Division of Public Health Sciences\\
+\>\>Wake Forest School of Medicine\\
+\>\>Medical Center Boulevard\\
+\>\>Winston-Salem, North Carolina 27157\\
+\>\>(336) 716-6956\\
+\>\>{\tt bjaeger@wakehealth.edu}\\
+\\
+
+
+{\bfseries\large  EDUCATION}  \\
+\>2008--2012\> Furman University \\
+\>\>Greenville, South Carolina \\
+\>\>B.S. \emph{magna cum laude} (Mathematics) \\
+\\
+\>2012--2017\> Gillings School of Global Public Health \\
+\>\>Chapel Hill, North Carolina \\
+\>\>Ph.D. (Statistics)\\
+\\
+\>\>Research Advisor:  Lloyd J. Edwards, Ph.D.\\
+\>\>Thesis:  \emph{Extending $R^2$ to the generalized linear mixed model}
+\end{tabbing}
+
+\mysection{EMPLOYMENT}
+\mysubsection{Academic Appointments}
+\markboth{EMPLOYMENT (Continued)}{Academic Appointments (Continued)}
+
+
+\begin{tabbing}
+
+\hskip 0.2in \emph{Gillings School of Global Public Health, Chapel Hill, North Carolina}\\
+
+\hspace{0.25in} \= 2012--2017 \hspace{0.7in} \= Research Assistant, Department of Biostatistics\\
+
+\hspace{0.25in} \= 2014--2017 \hspace{0.7in} \= Teaching Assistant, Department of Biostatistics\\
+
+\hspace{0.25in} \= 2016--2017 \hspace{0.7in} \= Statistical Consultant, School of Nursing\\
+\\
+
+
+\hskip 0.2in \emph{North Carolina Central University, Durham, North Carolina}\\
+\>2016--2017\> Adjunct Professor, School of Business\\
+\\
+
+\hskip 0.2in \emph{University of Alabama at Birmingham, Birmingham, Alabama}\\
+\>2017--2021\> Assistant Professor, Department of Biostatistics\\
+\\
+
+\hskip 0.2in \emph{Wake Forest School of Medicine, Wake Forest University, Winston-Salem, North Carolina}\\
+\>2021--Present\>\AR{Assistant Professor,  Department of Biostatistics and Data Science, Division of}\\\>\>\hspace{0.25in}\AR{Public Health Sciences}\\
+
+\end{tabbing}
+
+\mysection{ADMINISTRATIVE SERVICE}
+
+% TODO: ADD 
+% - e-mail walter about teaching (SPA - standardized patient assessment)
+% - grand rounds (?)
+% - lunch & learn
+% - DSIG leadership
+
+\mysubsection{Institutional  Service (UAB)}
+\begin{tabbing}
+\hspace{0.25in} \= 2017--2019\hspace{0.25in} \= Statistical Lecturer, Kirklin Institute of Research in Surgical Outcomes,\\\>\>\hspace{0.25in}University of Alabama at Birmingham (UAB) School of Medicine.\\
+
+\> 2017--2021 \>Academic Advisor for Andrew Sims, UAB Biostatistics \\
+
+\> 2017--2018 \>Member, Masters Committee for Catherine Jones, UAB Epidemiology. ``The association\\\>\>\hspace{0.25in}between physical activity and executive functioning in obese adults'' \\
+
+\> 2018 \>Member, Masters Committee for Nora Ahmad Mohammad Balas, UAB Epidemiolgy.\\\>\>\hspace{0.25in}``Factors associated with breast cancer screening behaviors in a sample of\\\>\>\hspace{0.275in} Jamaican women'' \\
+
+\> 2018--2021 \>Member, Diversity Committee, UAB \\
+
+\> 2018--2020 \>Member, Doctoral Committee for Anastasia Hartzes, UAB Biostatistics.\\\>\>\hspace{0.25in}``Evaluating Lumpability in Markov Models: Applying Markov Processes\\\>\>\hspace{0.275in} to Model Disability in Relapsing Multiple Sclerosis Patients'' \\
+
+
+\> 2018--2020 \>Member, Doctoral Committee for Steve Ampah, UAB Biostatistics.\\\>\>\hspace{0.25in}``Marginalized Models with Heterogeneous Random Effects for Zero-inflated\\\>\>\hspace{0.275in} Longitudinal Count Data'' \\
+
+\> 2019--2020 \>Member, Undergraduate Honors Thesis Committee for Natalie Simpkins, UAB.\\\>\>\hspace{0.25in}Science and Technology Honors Program \\
+
+\> 2019--2021 \>Member, Doctoral Committee for Charles F. Murchison, UAB Biostatistics.\\\>\>\hspace{0.25in}``Application of Longitudinal Machine Learning Methods in Multi-Study\\\>\>\hspace{0.275in} Alzheimer's Disease Datasets'' \\
+
+\> 2019--2022 \>Member, Doctoral Committee for Boyi Guo, UAB Biostatistics.\\\>\>\hspace{0.25in}``Bayesian Hierarchical Additive Models'' \\
+
+\> 2019--2022 \>Member, Doctoral Committee for Swati Sakhuja, UAB Epidemiology\\\>\>\hspace{0.25in}``Racial Differences in Auxiliary Ambulatory Blood Pressure Parameters''\\
+
+\> 2021--Present \>\AR{Member, Doctoral Committee for Philip Akinyelure}, UAB Epidemiology\\\>\>\hspace{0.25in}``Social determinants of health and uncontrolled blood pressure in\\\>\>\hspace{0.275in}Black and White US adults''
+
+\end{tabbing}
+
+\mysubsection{Institutional  Service (WFUSM)}
+\begin{tabbing}
+
+\hspace{0.25in} \= 2021--2022\hspace{0.25in} \=\AR{Member, Project TOOLBOX Document Management Review Working Group} \\\>\>\hspace{0.25in}WFUSM Department of Biostatistics and Data Science.
+
+\hspace{0.25in} \= 2022--present\hspace{0.25in} \=\AR{Member, Faculty recruitment committee} \\\>\>\hspace{0.25in}WFUSM Department of Biostatistics and Data Science.
+
+\end{tabbing}
+
+
+\mysection{EXTRAMURAL APPOINTMENTS AND SERVICE}
+
+\markboth{\ }{\ }
+
+\mysubsection{Editorial Boards}
+
+\begin{enumerate}
+
+\item Member, \textit{Hypertension}, 2019--Present
+
+\item \AR{Statistical Section Editor, \textit{Hypertension}}, 2022--Present
+
+\end{enumerate}
+
+\mysubsection{Advisory Boards}
+
+\begin{enumerate}
+
+\item Eastern North American Regional Advisory Board Member, 2019--present.
+
+\item \AR{Data and Safety Monitoring Board Member, 2021--present, R01 AG068486: Preventing Cognitive Decline by Reducing Blood Pressure Target Trial.}
+
+\item \AR{Data and Safety Monitoring Board Member, 2021--present, R01 HL153750: Supporting Tailored Adaptive Change and Reinforcement for Medication Adherence Program (STARMAP): Randomized trial of a novel approach to improve adherence among older hypertensive women and men.}
+
+\end{enumerate}
+
+\mysubsection{Journal Reviewer}
+\begin{packed_enum}
+\item Hypertension
+\item Biometrical Journal
+\item Biometrics
+\item Journal of the American Society of Nephrology
+\item Hypertension Research
+\item Journal of Human Hypertension
+\item Journal of Bone and Mineral Research
+\item Circulation: Cardiovascular Quality and Outcomes
+\item Mayo Clinic Proceedings
+\item BMJ Open
+\end{packed_enum}
+
+\mysection{PROFESSIONAL MEMBERSHIPS AND SERVICE}
+
+\mysubsection{Memberships}
+
+\begin{tabbing}
+\hspace{0.25in} \= 2011--Present \hspace{0.25in} \=  Member, Eastern North American Region, International Biometric Society\\
+\> 2016--Present \> Member, American Statistical Association\\
+\> 2022--Present \> \AR{Member, American Geriatric Society}\\
+\end{tabbing}
+
+\mysection{HONORS AND AWARDS}
+\begin{tabbing}
+\hspace{0.25in} \= 2007\phantom{--Present} \hspace{0.25in} \= Regional finalist, Siemens Competition in Math, Science, and Technology \\
+\>2008\> Wylie Scholarship in Mathematics, Furman University\\
+\>2012\> Graduated \emph{summa cum laude}, Furman University\\
+\>2012\> Phi Beta Kappa, Furman University\\
+\>2012\> DeLany Medal for Excellence in Mathematics, Furman University\\
+\>2016\> Big Data to Knowledge Scholarship, NIH Common Fund\\
+\>2017\> Distinguished Student Paper Award, Eastern North American Region\\
+\>2019\> Finalist; American Heart Association Best Artificial Intelligence and Machine\\\>\>\hspace{0.25in}Learning Paper Award \\
+\>2022\> \AR{American Geriatric Society's Presidential Poster Award}
+\end{tabbing}
+
+\mysection{GRANTS}
+
+\mysubsection{Current Grants}
+
+Approximately 93\% of my salary is covered by the projects below. 
+
+\begin{enumerate}
+
+\item \AR{U24 AR071113 (Miller/Pahor/Rejeski)} \hfill 12/01/2016--11/30/2022 
+
+NIH
+
+{\bfseries MoTrPAC}
+
+The Consortium Coordinating Center (CCC) for the Molecular Transducers of Physical Activity Consortium (MoTrPAC) will provide support for the organization, administration, planning, standardization, documentation, monitoring, and reporting activities necessary for the success of the MoTrPAC. The CCC will play a pivotal role in ensuring the cohesion of the MoTrPAC by enhancing communication and integration across the study. The CCC will promote strategies to integrate the MoTrPAC activities with the input from the Data Safety Monitoring Board (DSMB), External Scientific Advisors, other experts, and the NIH.
+
+{\bfseries Role: Co-investigator}
+
+{\bfseries Effort: 25\%}
+
+\item \AR{R01 AG055606-02A1 (Reboussin)} \hfill 06/15/2017--05/31/2024
+  
+NIA
+
+{\bfseries SPRINT MIND 2020}
+
+Alzheimer’s disease has been estimated to effect >46 million individuals globally and 5.8 million persons in the United States. This number is expected to double by 2050.  Thus far only one strategy to prevent age-related cognitive impairment has proven to be effective in a randomized controlled trial: the intensive SBP lowering intervention in SPRINT.  By obtaining an additional visit with the SPRINT cohort, the proposed study would provide important evidence to inform clinical decision-making on the potential for treatment of hypertension to postpone cognitive decline. 
+
+{\bfseries Role: Co-investigator}
+
+{\bfseries Effort: 15\%}
+
+  
+\item \AR{UL1 TR001420-05 (McClain)} \hfill 06/2017--05/2024 
+
+NIH
+
+{\bfseries Wake Forest Clinical and Translational Science Award}
+
+The purpose of this Clinical and Translational Science Award (CTSA) application is to synergize the fundamental positive changes that the Translational Science Institute has already brought to bear at Wake Forest Baptist Health. Strategic Goal 5: Promote research sustainability by increasing efficiency through effective organization, governance, collaboration, and communication. 
+
+{\bfseries Role: Co-investigator}
+
+{\bfseries Effort: 10\%}
+
+\item \AR{R01HL117323 (Paul Muntner)} \hfill 07/01/2021--06/30/2025
+
+NIH-NHLBI
+
+{\bfseries Incorporation of a Hypertension Working Group into the Jackson Heart Study}
+
+The objective of this grant is to identify novel risk factors for hypertension and potential approaches to improve hypertension control rates and reduce BP related complications among African Americans. We will integrate a strong mentorship component to help early stage investigators, especially minority investigators, move towards independence.
+
+{\bfseries Role: Principal Investigator (sub-contract)}
+
+{\bfseries Effort: 15\%}
+
+\item \AR{75N92020D00007 (Bertoni)} \hfill 12/19/2019--12/18/2026
+  
+NHLBI
+  
+{\bfseries Multi-Ethnic Study of Atherosclerosis (MESA) Field Center (FC)}
+
+The scientific objectives are to (1) enhance statistical power to perform analyses of predictors of clinical outcomes, particularly in informative subgroups; (2) study the progression of subclinical to clinical CVD; and (3) identify new risk factors or interactions among factors that inform disease pathophysiology. The operational goals are to (1) continue cohort follow-up and information collection to document clinical events; (2) continue to foster scientific collaborations; and (3) conduct a limited clinical examination of the MESA participants as a platform for ancillary study examination components. 
+
+{\bfseries Role: Co-investigator}
+
+{\bfseries Effort: 13\%}
+
+\item U24 HL155802-01A1 (Pajewski) \hfill 09/2021--08/2026
+
+NHLBI
+
+{\bfseries Data Coordinating Center for the Long-Term Effectiveness of the Anti-obesity medication Phentermine: The LEAP Trial}
+
+The goal of this trial is to assess the long term effectiveness of Phentermine for weight loss and blood pressure reduction.
+
+{\bfseries Effort: 8\%}
+
+\item \AR{R01 DK128803-01 (Ix)} \hfill 08/2021--03/2025
+
+NIH
+
+{\bfseries Kidney Tubule Dysfunction and Future Risk of Acute Kidney Injury}
+
+This project aims to evaluate the relationship of tubule dysfunction at times of health with future risk of acute kidney injury due to sepsis, after cardiac surgery, and in heart failure patients.
+
+{\bfseries Role: Principal Investigator (sub-contract)}
+
+{\bfseries Effort: 1\%}
+
+\item \AR{Pilot Award (Jaeger)} \hfill 04/2022--03/2023
+  
+Wake Forest Center for Biomedical Informatics
+  
+{\bfseries Accelerating the Oblique Random Survival Forest (AORSF)}
+
+The scientific objectives are to (1) optimize routines to fit oblique random survival forests, (2) implement routines in an open-source software package, and (3) disseminate the software along with a separate benchmark of routines in the software through public channels.
+
+{\bfseries Role: Principal investigator}
+
+{\bfseries Effort: 0\% (Not allowed to fund my salary)}
+
+\item \AR{Pilot Award (Jaeger)} \hfill 04/2022--03/2023
+  
+Wake Forest Biostatistics, Epidemiology, and Research Design (BERD)
+  
+{\bfseries Variable Importance for Oblique LEarning Tree ensembles (VIOLET)}
+
+The scientific objectives are to (1) develop a novel technique for estimation of variable importance using oblique random survival forests, (2) implement this technique in open-source software, and (3) disseminate the software along with a separate benchmark of routines in the software through public channels.
+
+{\bfseries Role: Principal investigator}
+
+{\bfseries Effort: 6\%}
+
+\end{enumerate}
+
+\mysubsection{Past Grant History}
+
+Available upon request
+
+\mysection{BIBLIOGRAPHY}
+
+
+
+
+My \href{https://www.ncbi.nlm.nih.gov/myncbi/byron.jaeger.1/bibliography/public/}{MyNCBI collection} and my \href{https://scholar.google.com/citations?user=4IKD_roAAAAJ&hl=en}{Google scholar profile} are publicly available. I have a total of 65 articles in peer-reviewed journals, with 16 second author and 12 first author publications. As of \today, my Google scholar h-index was 22 with 2608 total citations. \AR{During the current review period (July 1 2021 through June 30, 2022), I published a total of 20 articles (4 first author and 5 second author)}.
+
+\mysubsection{Peer-Reviewed Journal Articles}
+
+% \begin{thebibliography}{}
+
+%\bibliographystyle{science}
+\input{DMLong_CV_bbl.tex}
+%\nocite{*}
+%\printbibliography[heading=none]
+
+% \end{thebibliography}
+
+
+
+
+\mysubsection{Presentations at Professional Meetings}
+
+\begin{enumerate}
+
+\item Narang GL, Smith AB, \me, Pinheiro L, Edwards LJ, Pruthi R, et al. Changes in Health-Related Quality of Life Among Older Adults with Prostate Cancer: A Case-Control Study. Journal of the American College of Surgeons. 2017;225(4):e105. 
+
+
+\item Smith A, Jaeger B, Pinheiro L, Edwards L, Reeve B. MP14-13 CHANGES IN HEALTH-RELATED QUALITY OF LIFE AMONG OLDER ADULTS WITH PROSTATE CANCER: A CASE-CONTROL STUDY. The Journal of Urology. 2017;197(4S):e166--7
+
+\item \me, LJ Edwards, MJ Gurka. An R-squared Statistic for Covariance Model Selection in the Linear Mixed Model. ENAR Spring Meeting, Atlanta, GA 2018.
+
+\item \me, LJ Edwards, MJ Gurka. An R-squared Statistic for Covariance Model Selection in the Linear Mixed Model. Joint Statistical Meeting, Vancouver 2018
+
+\item LC Baptista, \me, SD Anton, AA Bavry, EM Handberg, et al. Change in Metabolic and Inflammatory Biomarkers after a 24-Week Multimodal Intervention. 9th International Conference on Frailty and Sarcopenia Research, Miami, FL 2019
+
+\item \me, DL Long, DM Long, M Sims, J Szychowski, Y Min, et al. Oblique Random Survival Forests. ICSA Applied Statistics Symposium, Raleigh, NC 2019.
+
+\item D Gupta, \me, R Cantor, D Koehl, N Bansal, Prolonged Hospital Length Of Stay After Pediatric Heart Transplantation And Its Impact On Outcomes: A PHTS Database Analysis. AHA Scientific Sessions, Philadelphia, PA 2019.
+
+\item Butler M, Kalinowski J, Shimbo D, Sims M, Booth JN, Bress AP, Tanner RM, \me Fredericks S, Ogedegbe G, Spruill TM. Abstract P179: Hypertension Awareness is Associated With Negative Psychosocial Outcomes in Africans Americans in the Jackson Heart Study (JHS). Circulation. 2019;139(Suppl\_1):AP179--AP179
+
+\item Roberts LM, \me, Baptista LC, Harper SA, Jackson E, Gardner AK, et al. Wearable Technology To Reduce Sedentary Behavior And CVD Risk In Older Adults: A Pilot Trial: 3620 Board no. 308 June 1 9: 30 AM-11: 00 AM. Medicine and Science in Sports and Exercise. 2019;51(6S):1004.
+
+\item Siddiqui M, \me, Judd E, Dudenbostel T, Pollock DM, Pollock J, et al. Novel 24-hour blood pressure profile in patients with resistant hypertension. Journal of the American College of Cardiology. 2019;73(9S1):1818--1818.
+
+\item Siddiqui M, \me, Gaddam K, Dudenbostel T, Judd E, Pollock D, et al. Spironolactone does not change 24 hour blood pressure circadian pattern in resistant hypertensive patients. Journal of Hypertension. 2019;37:e313.
+
+\item \me, Cantor RS, Sthanam V, Rudraraju R. Improving Mortality Predictions for Patients With Mechanical Circulatory Support Using Follow-Up Data and Machine Learning. Circulation: Genomic and Precision Medicine. 2020;13(4):e002877.
+
+\item Sakhuja S, Hardy ST, Akinyelure P, \me, Shimbo D, Bress AP, et al. Abstract P335: Using Cardiovascular Disease Risk Versus Blood Pressure To Guide The Initiation Of Antihypertensive Medication Among Us Adults. Circulation. 2020;141(Suppl\_1):AP335--AP335.
+
+\item Segar MW, \me, Patel KV, Nambi V, Ndumele CE, Correa A, et al. Development and Validation of Machine Learning-based Race-specific Models to Predict 10-year Risk of Heart Failure: A Multi-cohort Analysis. Circulation. 2020;142(Suppl\_3):A196--A196.
+
+\item Thomas SJ, Booth III JN, \me, Hubbard D, Sakhuja S, Abdalla M, et al. Association of sleep characteristics with nocturnal hypertension and nondipping blood pressure in the CARDIA study. Journal of the American Heart Association. 2020;9(7):e015062.
+
+\item Wisotzkey BL, Asante-Korang A, Kirklin JK, Cantor R, Koehl D, \me, et al. Risk Factors for One-year Mortality and Allograft Loss in Pediatric Heart Transplant Patients Using Machine Learning: Analysis of the Pediatric Heart Transplant Society Database. Circulation. 2020;142(Suppl\_3):A14239--A14239.
+
+\item Yano Y, Poudel B, Chen L, Sakhuja S, \me, Viera A, et al. Abstract P173: The Impact of Asleep Blood Pressure on the Prevalence of Masked Hypertension by Race/ethnicity: Analysis of Pooled Population-and Community-based Studies. Circulation. 2020;141(Suppl\_1):AP173--AP173.
+
+\item Butts RJ, Kirklin J, Cantor R, Zhao H, \me, Nandi D, et al. \AR{Congenital Heart Disease Classification Improves SRTR Risk Estimation of Waitlist and Early Post-Transplant Mortality for Pediatric Heart Transplantation}. Circulation. 2021;144(Suppl\_1):A11567--A11567
+
+\item Tajeu GS, Colvin C, Hardy ST, Gaye B, Bress AP, \me, et al. \AR{Prevalence, Risk Factors And Cardiovascular Outcomes Associated With Persistent Blood Pressure Control: The Jackson Heart Study.} Circulation. 2021;143(Suppl\_1):A064--A064.
+
+\item Turkson-Ocran R-AN, Miller ER, Zhao D, Pilla S, Duan D, \me, et al. Abstract MP14: \AR{The Effect Of Time-restricted Feeding On 24-hour Ambulatory Blood Pressure: Results From The Time-restricted Intake Of Meals (TRIM) Study.} Circulation. 2021;143(Suppl\_1):AMP14--AMP14.
+
+\item S Sakhuja, \me, Y Yano, D Shimbo, CE Lewis, et al. Abstract P117: \AR{Association Of Ambulatory Blood Pressure Monitoring Parameters With Left Ventricular Hypertrophy: Analysis Of Pooled Population- And Community-based Studies.} Circulation 145 (Suppl\_1), AP117-AP117.
+
+\item Akinyelure OP, \me, Oparil S, Carson AP, Safford M, Howard G, Muntner P, Hardy ST. \AR{Social Determinants Of Health And Uncontrolled Blood Pressure In A National Cohort Of Black And White US Adults.} Circulation. 2022 Mar 1;145(Suppl\_1):A052-.
+
+\end{enumerate}
+
+\mysubsection{Invited Extramural Presentations}
+
+\begin{enumerate}
+
+\item September 28, 2021 \me. \AR{Happier Version Control using Git and GitHub with Rstudio. American Statistical Assocation Statistical Learning and Data Science Webinar.} \href{https://bcjaeger.github.io/seminar-git/#1}{Slides here}
+
+\item April 20, 2022 \me. \AR{Introduction to R. Biostatistics, Epidemiology, and Research Design (BERD): Lunch \& Learn.} \href{https://bcjaeger.github.io/lunch-and-learn/#1}{Slides here}
+
+\item June 21, 2022 \me. \AR{Accelerated oblique random survival forests. Invited speaker at the International Chinese Statistical Association.} \href{https://bcjaeger.github.io/aorsf-bench}{Slides here}
+
+\item August 4, 2022 \me. Disseminating prediction methods. Invited speaker at the Joint Statistical Meetings. \href{https://bcjaeger.github.io/seminar-fastpack/#1}{Slides here}
+
+\item September 7, 2022 \me. Making machine learning fast and interpretable. WFUSM Public Health Sciences Grand Rounds. \href{https://bcjaeger.github.io/seminar-orsf-grandrounds/#1}{Slides here}
+
+\end{enumerate}
+
+
+
+\mysection{PERSONAL STATEMENT {\normalfont\emph{(Last updated \today)}}}
+{\setlength\parindent{1cm}
+
+\input{Personal_Statement.tex}
+
+
+}
+
+\end{document}

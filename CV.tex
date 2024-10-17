@@ -1,0 +1,883 @@
+\documentclass[10pt]{article}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc,filecontents}
+\usepackage{mfirstuc}
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+\newcommand{\grantinfo}[6]
+{\begin{tabular}{@{}lll@{}}
+{#1} & {#2} & {#3} \\
+\end{tabular}
+\newline{#4}\newline{#5}\newline{#6}}
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=letterpaper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=0.8in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=1in,               % 1 inch margins
+            includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=30.5mm,    % Length of section titles
+%            marginparsep=1.5mm,       % Space between titles and text
+%            margin=25mm,              % 25mm margins
+%            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+%% This gives us fun enumeration environments. compactenum will be nice.
+\usepackage{paralist}
+
+%% Reference the last page in the page number
+%
+% NOTE: comment the +LP line and uncomment the -LP line to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers (make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage,accents}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Uncomment this to get rid of page numbers
+
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%                    \arabic{page}                               % -LP
+                    \hfill \,}}
+
+% Finally, give us PDF bookmarks
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\fancyhead[LO,LE]{\bf Dustin M. Long}
+%\fancyhead[RO,RE]{\bf \today}
+
+\fancyheadoffset{\marginparsep +\marginparwidth}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The title (name) with a horizontal rule under it
+%
+% Usage: \makeheading{name}
+%
+% Place at top of document. It should be the first thing.
+\newcommand{\makeheading}[1]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+                {\large \bfseries #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+%\fancyhead[LO,LE]{\makeheading{Dustin M. Long}}
+% The section headings
+%
+% Usage: \section{section name}
+%
+% Follow this section IMMEDIATELY with the first line of the section
+% text. Do not put whitespace in between. That is, do this:
+%
+%       \section{My Information}
+%       Here is my information.
+%
+% and NOT this:
+%
+%       \section{My Information}
+%
+%       Here is my information.
+%
+% Otherwise the top of the section header will not line up with the top
+% of the section. Of course, using a single comment character (%) on
+% empty lines allows for the function of the first example with the
+% readability of the second example.
+
+\usepackage{stringstrings} % \capitalize, \caselower
+\newcommand{\sentencecase}[1]{\caselower[e]{#1}\capitalize{\thestring}}
+
+
+\renewcommand{\section}[2]%
+        {\pagebreak[2]\vspace{1.3\baselineskip}%
+         \phantomsection\addcontentsline{toc}{section}{#1}%
+         \hspace{0in}%
+         \marginpar{
+         \raggedright \scshape #1}#2}
+
+% An itemize-style list with lots of space between items
+\newenvironment{outerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1]}{\end{itemize}%
+         \vspace{-.6\baselineskip}}
+
+% An environment IDENTICAL to outerlist that has bette r pre-list spacing
+% when used as the first thing in a \section
+\newenvironment{lonelist}[1][\enskip\textbullet]%
+        {\vspace{-\baselineskip}\begin{list}{#1}{%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+
+% An itemize-style list with little space between items
+\newenvironment{innerlist}[1][\enskip\textbullet]%
+        {\begin{compactitem}[#1]}{\end{compactitem}}
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[2]}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+	backend=biber, defernumbers=true, %style=musuos
+	style=numeric-comp, autocite=plain, sorting=none,maxnames=99,
+	maxcitenames=99,
+    maxbibnames=99]{biblatex}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{xpatch}
+
+\makeatletter
+\def\hlblx@ensuredocument#1{%
+  \ifx\@onlypreamble\@notprerr
+    #1%
+  \else
+    \AtBeginDocument{#1}%
+  \fi
+}
+
+\def\hlblx@bibfile@name{\jobname -boldnames.bib}
+\newwrite\hlblx@bibfile
+\immediate\openout\hlblx@bibfile=\hlblx@bibfile@name
+
+\newcounter{hlblx@name}
+\setcounter{hlblx@name}{0}
+
+\newcommand*{\hlblx@writenametobib}[1]{%
+  \stepcounter{hlblx@name}%
+  \edef\hlblx@tmp@nocite{%
+    \noexpand\hlblx@ensuredocument{%
+      \noexpand\setbox0\noexpand\vbox{%
+        \noexpand\hlblx@getmethehash{hlblx@name@\the\value{hlblx@name}}}}%
+  }%
+  \hlblx@tmp@nocite
+  \immediate\write\hlblx@bibfile{%
+    @misc{hlblx@name@\the\value{hlblx@name}, author = {\unexpanded{#1}}, %
+          options = {dataonly=true},}%
+  }%
+}
+
+\AtEndDocument{%
+  \closeout\hlblx@bibfile}
+
+\addbibresource{\hlblx@bibfile@name}
+
+\newcommand*{\hlbxl@boldhashes}{}
+\DeclareNameFormat{hlblx@hashextract}{%
+  \xifinlist{\thefield{hash}}{\hlbxl@boldhashes}
+    {}
+    {\listxadd{\hlbxl@boldhashes}{\thefield{fullhash}}}}
+
+\DeclareCiteCommand{\hlblx@getmethehash}
+  {}
+  {\printnames[hlblx@hashextract][1-999]{author}}
+  {}
+  {}
+
+\newcommand*{\addboldnames}{\forcsvlist\hlblx@writenametobib}
+\newcommand*{\resetboldnames}{\def\hlbxl@boldhashes{}}
+
+\newbibmacro*{name:bold}[2]{%
+  \def\do##1{\iffieldequalstr{hash}{##1}{\bfseries\listbreak}{}}%
+  \dolistloop{\hlbxl@boldhashes}%
+}
+\makeatother
+
+\xpretobibmacro{name:family}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
+\xpretobibmacro{name:given-family}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
+\xpretobibmacro{name:family-given}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
+\xpretobibmacro{name:delim}{\begingroup\normalfont}{}{}
+
+\xapptobibmacro{name:family}{\endgroup}{}{}
+\xapptobibmacro{name:given-family}{\endgroup}{}{}
+\xapptobibmacro{name:family-given}{\endgroup}{}{}
+\xapptobibmacro{name:delim}{\endgroup}{}{}
+
+
+
+\addbibresource{submitted.bib}
+\addbibresource{bibtex20190517.bib}
+
+\AtBeginBibliography{\renewcommand*{\makelabel}[1]{#1\hss}}
+
+
+%\DeclareFieldFormat{labelnumberwidth}{#1\adddot}
+%\setlength{\biblabelsep}{0ex}
+
+\begin{filecontents}{submitted.bib}
+@article{sohail2019,
+author = {Sohail, M and Levitan, E B and Rana, A and Heath, S L and Colette- Kempf, M and Rastegar, J and Long, D M},
+journal = {Journal of the International Association of Providers of AIDS Care},
+month = {October},
+organization = {United States},
+title = {Estimating the Number of Undiagnosed People Living with {HIV}: A Review.},
+year = "2019 Submitted"
+}
+
+@article{tompkins2019,
+author = {O’Hara Tompkins, N and Northrup, K and Grant, J and Weikle, M and Long, D M and Bassler, J and Workman, C and Ramsey, Z and  and Jarrett, T and Sirk, H and Cottrell, L},
+journal = {Translational Journal of the American College of Sports Medicine },
+month = {July},
+organization = {United States},
+title = {Translating School Physical Education and Activity Policies into Practice:  A Case Study},
+year = "2019 Under Review"
+}
+
+@article{olfert2019,
+author = {Olfert, M and Barr, M and Hagedorn, R and Long, D M and Haggerty, T and Weimer, M and Golden, J and Maurer, M A and Cochran, J and Hendershot, T and Whanger, S and Mason, J and Hodder, S},
+journal = {Journal of Personalized Medicine},
+month = {October},
+organization = {United States},
+title = {Feasibility of a mHealth Approach to Nutrition Counseling in an Appalachian State},
+year = "2019 Under Review"
+}
+
+@article{carson2019,
+author = {Carson, T L and Molina, K and Long, D M and Baskin, M L},
+journal = {Annals of Behavioral Medicine},
+month = {June},
+organization = {United States},
+title = {Psychological and behavioral pathways between perceived stress and BMI in a behavioral weight loss intervention},
+year = "2019 Under Review"
+}
+
+
+@article{vangerwin2019,
+author = {Van Gerwin, O and Jani, A and Long, D M and Austin, E L and Musgrove, J and Muzny, C},
+journal = {Transgender Health},
+month = {August},
+organization = {United States},
+title = {Prevalence of Sexually Transmitted Infections and Human Immunodeficiency Virus in Transgender Persons: A Systematic Review },
+year = "2019 Submitted"
+}
+
+@article{long2019,
+author = {Long, D M and Wheeler, M W and Park, R and Bailer, J},
+journal = {Statistics in Medicine},
+month = {November},
+organization = {United States},
+title = {Cox Proportional Hazard Regression and Splines: A Cautionary Tale for exposure-response assessment},
+year = "2019, Internal Review at National Institute for Occupational Safety and Health"
+}
+
+@article{webel2019,
+author = {Webel, A R and Long, D M and Rodriguez, B and Horvat Davey, C and Buford, T W and Crane, H M and Mayer, K and Saag, M S and Willig, A L},
+journal = {Journal of Acquired Immune Deficiency Syndromes (JAIDS)},
+month = {October},
+organization = {United States},
+title = {The PROSPER-HIV Study: A Research Protocol to Examine Relationships Among Physical Activity, Diet Intake, and Symptoms in Adults Living with HIV},
+year = "2019 In Press"
+}
+
+
+@article{sohail2019a,
+author = {Sohail, M and Rastegar, J and Long, D M and Rana, A and Levitan, E B and Reed-Pickens, H and Batey, D S and Ross-Davis, K and Gaddis, K and Tarrant, A and Parmar, J and Raper, J L and Mugavero, M J },
+journal = {Journal of Acquired Immune Deficiency Syndromes (JAIDS)},
+month = {September},
+organization = {United States},
+title = {Data for Care (D4C) Alabama: Clinic-wide risk stratification with enhanced personal contacts for retention in HIV care via the Alabama Quality Management Group},
+year = "2019 In Press"
+}
+
+@article{jaeger2019,
+author = {Jaeger, B J and Long, D L and Long, D M and Simsy, M and Szychowski, J and Miny, Y and Mcclure, L A and Howard, G and Simonz, N},
+journal = {Annals of Applied Statistics},
+month = {November},
+organization = {United States},
+title = {Oblique Random Survival Forests},
+year = "2019 In Press"
+}
+
+
+%@article{hunter2018,
+%author = {Hunter, A and Long, D M and Davidov, D and Kelley, G A and Rockett, I R H},
+%journal = {PLOS ONE},
+%month = {January},
+%organization = {United States},
+%title = {Long Term Effectiveness of Differential Response in Preventing Child Maltreatment Re-Report.},
+%year = "2018 Under Review"
+%}
+
+
+
+\end{filecontents}
+
+
+
+\addboldnames{{Long, D.},{Long, D. M.},{Long, D},{Long, D M}}
+
+
+% Count total number of entries in each refsection
+\AtDataInput{%
+  \csnumgdef{entrycount:\therefsection}{%
+    \csuse{entrycount:\therefsection}+1}}
+
+% Print the labelnumber as the total number of entries in the
+% current refsection, minus the actual labelnumber, plus one
+\DeclareFieldFormat{labelnumber}{\mkbibdesc{#1}}    
+\newrobustcmd*{\mkbibdesc}[1]{%
+\number\numexpr\csuse{entrycount:\therefsection}-3-#1\relax}
+
+
+
+
+\begin{document}
+
+\makeheading{Dustin M. Long, PhD}
+
+\section{Contact}
+%
+% NOTE: Mind where the & separators and \\ breaks are in the following
+%       table.
+%
+% ALSO: \rcollength is the width of the right column of the table 
+%       (adjust it to your liking; default is 1.85in).
+%
+\newlength{\rcollength}\setlength{\rcollength}{1.85in}%
+%
+%\begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
+%216 Piave Lane                           & \textit{Cell:} (865) 300-7903 \\
+%Morgantown, WV 26508   USA           & \href{mailto:dustinlong318@gmail.com}{dustinlong318@gmail.com}\\
+%\end{tabular}
+
+\begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
+1720 2ND Avenue South                          & \textit{Office:} (205) 975-5955 \\
+Birmingham, AL 35294-0002   USA           & \href{mailto:dmlong@uab.edu}{dmlong@uab.edu}\\
+\end{tabular}
+
+%\section{Citizenship}
+%
+%USA
+
+%\section{Research Interests}
+%
+%Principal Stratification, Causal Inference, 
+
+\section{Professional Experience}
+
+\href{http://www.uab.edu/}{\textbf{University of Alabama at Birmingham}}, \href{http://www.soph.uab.edu//}{\textbf{School of Public Health}}\\
+\href{http://www.soph.uab.edu/bst}{\textbf{Department of Biostatistics}}
+\begin{outerlist}
+\item[] {Assistant Professor} \normalfont%         
+				\hfill \textbf{July 2016 to Present}
+        %\item[] \textit{Interim Associate Chair} \normalfont% 
+        %\hfill \textbf{October 2015 to present}
+\end{outerlist}
+
+\blankline
+
+
+\href{http://www.wvu.edu/}{\textbf{West Virginia University}}, \href{http://publichealth.hsc.wvu.edu/}{\textbf{School of Public Health}}\\
+\href{http://publichealth.hsc.wvu.edu/biostatistics}{\textbf{Department of Biostatistics}}
+\begin{outerlist}
+\item[] {Assistant Professor} \normalfont%         
+				\hfill \textbf{August 2012 to July 2016}
+				\item[] {Graduate Studies Coordinator} \normalfont% 
+        \hfill \textbf{July 2013 to June 2016}
+        %\item[] \textit{Interim Associate Chair} \normalfont% 
+        %\hfill \textbf{October 2015 to present}
+\end{outerlist}
+
+\blankline
+
+\href{http://http://www.wvctsi.org/}{\textbf{West Virginia Clinical and Translational Science Institute}}\\
+\href{http://http://www.wvctsi.org/programs/epidemiology-biostatistics/}{\textbf{Clinical Research Design, Epidemiology, and Biostatistics Program}}
+\begin{outerlist}
+\item[] {Co-Chair}\normalfont% 
+        \hfill \textbf{September 2015 to July 2016}
+\end{outerlist}
+
+\blankline
+
+\href{http://www.bios.unc.edu}{\textbf{University of North Carolina-Chapel Hill Department of Biostatistics}}
+\begin{outerlist}
+
+\item[] \textit{\bf Graduate Research Assistant} \normalfont% 
+        \hfill \textbf{Spring 2008 to August 2012}
+\begin{innerlist}
+        \item Breastfeeding, Antiretroviral, and Nutrition (BAN) Protocol under Michael Hudgens
+\end{innerlist}
+
+\item[] \textit{\bf Training Grant Recipient}\normalfont% 
+        \hfill \textbf{August 2006 to August 2010}
+        \begin{innerlist}
+        \item \href{http://www.sph.unc.edu/bios/available_awards_175_6208.html#traininggrants}{Environmental Biostatistics Training Grant}, National Institute of Environmental Health Sciences, 2006-2010\\
+\end{innerlist}
+\end{outerlist}
+
+%\blankline
+
+\href{http://www.math.tntech.edu}{\textbf{Tennessee Technological University Department of Mathematics}}
+\begin{outerlist}
+\item[] \textit{\bf Graduate Teaching Assistant}\normalfont% 
+        \hfill \textbf{August 2004 to May 2006}
+% \begin{innerlist}
+% \item Sole instructor for undergraduate Elementary Probability and Statistics courses
+% \item Presented research at department colloquia
+% \item Tutored numerous undergraduate classes ten hours per week 
+% \end{innerlist}
+\end{outerlist}
+
+\blankline
+
+%\section{Work Experience}
+%
+%\href{http://www.sweetwaterhospital.org/}{\textbf{Sweetwater Hospital Association}}
+%\begin{outerlist}
+%\item[]\textbf{Assistant Director of Information Systems}
+% \hfill \textbf{May 2003 to June 2004}\\
+%\end{outerlist}
+%
+%\href{http://www.twcnet.edu/}{\textbf{Tennessee Wesleyan College}}
+%\begin{outerlist}
+%\item[]\textbf{Assistant Director of Information Systems}  
+%\hfill \textbf{June 2001 to July 2002}\\
+%\end{outerlist}
+
+
+
+\section{Education}
+%
+\href{http://www.unc.edu/}{\textbf{University of North Carolina}}, 
+Chapel Hill, North Carolina, USA
+\begin{outerlist}
+\item[] Ph.D., 
+        \href{http://www.bios.unc.edu/}
+             {Biostatistics}, December 2012
+        \begin{innerlist}
+        \item \href{http://dc.lib.unc.edu/cdm/ref/collection/etd/id/5479}{Dissertation Topic: ``Causal Inference and Principal Stratification:
+Competing Risks, Bounds, and Surrogates''}
+        \item Advisor: Michael G. Hudgens\\
+\end{innerlist}
+\end{outerlist}
+
+\href{http://www.tntech.edu/}{\textbf{Tennessee Technological University}}, 
+Cookeville, Tennessee, USA
+\begin{outerlist}
+\item[] M.S., 
+        \href{https://www.tntech.edu/cas/math/}
+             {Mathematics}, May 2006
+        \begin{innerlist}
+        \item Thesis Topic: ``A Semiparametric Approach to Linear Regression''
+        \item Advisor: {Michael Allen}\\
+        \end{innerlist}
+
+\end{outerlist}
+
+%\href{http://divinity.duke.edu/}{\textbf{Duke Divinity School}}, Durham, North Carolina USA
+%\begin{outerlist}
+%\item[] Completed 12 credits toward Masters of Divinity, 2002 to 2003\\
+%\end{outerlist}
+
+\href{http://www.twcnet.edu/}{\textbf{Tennessee Wesleyan College}}, 
+Athens, Tennessee USA
+\begin{outerlist}
+\item[] B.S., 
+        \href{http://www.twcnet.edu/}
+             {Mathematics},\emph{Cum Laude}, May 2001
+        \begin{innerlist}        
+        \item Minor in Chemistry
+        \end{innerlist}
+\end{outerlist}
+
+\section{Awards} 
+\href{http://www.wvu.edu}{ \bf West Virginia University}
+\begin{outerlist}\item[]
+\begin{innerlist}
+\item Distinguished Student Paper Award, Eastern North American Region of the International Biometrics Society, Orlando, FL. March 2013\\
+\end{innerlist}
+\end{outerlist}
+%
+\blankline
+\href{http://www.unc.edu}{\bf University of North Carolina-Chapel Hill}
+\begin{outerlist}\item[]
+\begin{innerlist}
+%\item Distinguished Student Paper Award, Eastern North American Region of the International Biometrics Society, Orlando, FL. March 2013
+\item Runner-up, JSM 2011 Stat Bowl
+\item JSM 2011 Stat Bowl Team Champion, as member of UNC Biostatistics team
+\item \href{http://provost.unc.edu/teaching-awards/tanner-award-for-excellence-in-undergraduate-teaching-by-graduate-teaching}           {The Tanner Award for Excellence in Undergraduate Teaching by Graduate Teaching Assistants}, 2010
+\item Delta Omega Recognition of Service Award (Department of Biostatistics), 2009
+\end{innerlist}
+\end{outerlist}
+
+\blankline
+
+%\href{http://www.tntech.edu/math/home/}{Tennessee Technological University}
+%\begin{outerlist}
+%\item[]
+%\begin{innerlist}
+%\item \href{http://www.math.tntech.edu/graduate.html#assistantships}
+%           {Mathematics Graduate Teaching Assistantship}, 2004-2006
+%\item Stanley Dolzycki Memorial Scholarship, 2006
+%\end{innerlist}
+%\end{outerlist}
+
+
+
+\href{http://www.twcnet.edu}{Tennessee Wesleyan College}
+\begin{outerlist}
+\item[]
+\begin{innerlist}
+\item \href{http://www.twcnet.edu/Admissions/admissionsscholarships.htm}
+           {Harriet Reeves Neff Full-Tuition Academic Scholarship}, 1997-2001
+\item   Townsend Award (Most Representative Student at TWC), 2001
+\item   Sliger's Jewelers Award (Graduate with Highest GPA), 2001
+\item   L \& M Motor's Mathematics Award, 2001
+%\item   Intramural Athelete of the Year, 2001
+\item   Ann Vaught Daugherty Award (Outstanding Member of Student Government), 2001
+\item   Student Government Association Treasurer, 1999-2000
+\item   Balfour Award (Outstanding Junior), 2000
+\item   Alpha Chi Honor Society, 2000
+\end{innerlist}
+\end{outerlist}
+
+\section{Courses Taught}
+{\bf University of Alabama at Birmingham}\normalfont
+\begin{outerlist}\item[]
+\begin{innerlist}
+				\item General Linear Models (BST 623): Fall 2017, 2018 \\
+\end{innerlist}
+\end{outerlist}	
+{\bf West Virginia University}\normalfont
+\begin{outerlist}\item[]
+\begin{innerlist}
+				\item Intermediate Biostatistics (BIOS 610): Fall 2013, 2014
+				\item Public Health Statistical Inference 1 (BIOS 612): Fall 2015
+				\item Applied Linear Models (BIOS 620): Spring 2013, 2014, 2015
+				\item Principles of Consulting (BIOS 623): Spring 2013, 2014, 2016
+				\item Consulting Experience (BIOS 624): Spring 2014, 2015, 2016, Summer 2015
+				\item Application of Biostatistics to Public Health Data (BIOS 629): Spring 2015, 2016 \\
+				
+\end{innerlist}
+\end{outerlist}	
+			
+{\bf University of North Carolina at Chapel Hill}\normalfont% 
+\begin{outerlist}\item[]
+\begin{innerlist}
+        \item Principles of Statistical Inference (BIOS 600): Fall 2009 \\
+\end{innerlist}
+\end{outerlist}
+
+{\bf Tennessee Technological University}\normalfont% 
+\begin{outerlist}\item[]
+\begin{innerlist}
+        \item Elementary Probability and Statistics (MATH 1530): Fall 2005, Spring 2006
+\end{innerlist}
+\end{outerlist}
+
+\blankline
+%
+%{\bf Teaching Assistant}\normalfont% 
+%\begin{outerlist}\item[]
+%\begin{innerlist}
+%        \item MATH 1530 (Elementary Probability and Statistics) at Tennessee Tech (Spring 2005); Lectured occasionally, held office hours, and graded for the class of 120 students
+%\end{innerlist}
+%\end{outerlist}
+
+%{\bf Grader}\normalfont% 
+%\begin{outerlist}\item[]
+%\begin{innerlist}
+%				\item BIOS 667 (Applied Longitudinal Data Analysis) for Professor Lloyd Edwards (Fall 2011)
+%        \item BIOS 600 (Principles of Statistical Inference) for Professor Denise Esserman (Spring 2010)
+%        \item BIOS 767 (Longitudinal Data Analysis) for Professor Amy Herring (Spring 2009)
+%        \item BIOS 662 (Intermediate Statistical Methods) for Professor Michael Hudgens (Fall 2007, Fall 2008)
+%\end{innerlist}
+%\end{outerlist}
+
+
+
+\section{Current Funding}
+
+\vspace{-3ex}
+
+\grantinfo{P30-AI027767}{Saag (PI)}{06/01/14--05/31/19}
+{UAB Center for AIDS Research}
+{The UAB Center for AIDS Research (CFAR) will stimulate and facilitate HIV/AIDS research that has high local, national, and international impact and in so doing will promote the NIH priorities of innovation and effectiveness in AIDS treatment and prevention.}
+{Role: Investigator}
+
+\bigskip
+
+\grantinfo{P50-AR060772}{Dino (PI)}{09/30/16--09/29/19}
+{West Virginia Prevention Research Center}
+{WV has one of the worst health profiles in the nation with high rates of tobacco use, obesity and related chronic diseases. The WV prevention research center will partner with state and local health departments and others to conduct applied public health research, evaluation, technical assistance, and training. We expect to provide cost-effective strategies, programs, and products that reduce health disparities and to promote a cultural norm where healthy behavior is accepted and practiced.}
+{Role: Subcontract Principal Investigator} 
+
+\bigskip
+
+\grantinfo{N/A HSRA}{Mugavero (PI)}{01/01/18--12/31/22}
+{Data 4 CARE Alabama (D4C AL): Clinics Achieving Retention And Engagement by Implementing CDC EBIs via the Alabama Regional Quality Group}
+{This project proposes a structural-level approach using readily available clinic-wide appointment data to categorize people living with HIV/AIDS as low-, intermediate-, or high-risk for poor. An evidence-informed intervention will be delivered to intermediate- and high-risk individuals in efforts to increase retention in care and viral suppression. Seven HIV clinics across the state of Alabama will provide data and implement the intervention under the auspices of the team at UAB providing training, data capture and rigorous evaluation.}
+{Role:  Co-investigator}
+
+\bigskip
+
+\grantinfo{R01MH115754}{Merlin (PI)}{07/01/18--06/30/23}
+{Evaluation of the Efficacy and Mechanisms of a Novel Intervention for Chronic Pain Tailored to People Living with HIV}
+{The overall objective of this proposal is to evaluate a novel theory-based Pain Self-Management intervention, “Skills TO Manage Pain” (STOMP), developed for and tailored to people living with HIV (PLWH). This approach incorporates novel peer co-led group sessions that were created based on our formative intervention development work, and includes patients with comorbidities (e.g., depressive symptoms, addiction history) common among PLWH but typically excluded from chronic pain studies.  This study also investigates the impact of a chronic pain intervention on disease-specific HIV outcomes in addition to pain and function.}
+{Role: Co-investigator}
+
+\bigskip
+
+\grantinfo{1R01NR018391-01}{Webel, Willig (PI)}{09/26/18--06/30/23}
+{Impact of physical activity routines and dietary intake on the longitudinal symptom experience of the people living with HIV (PROSPER-HIV)}
+{Strategies to reduce the high symptom distress among people living with HIV (PLHIV) are urgently needed. Our study examines how two promising symptom management strategies, physical activity and good dietary intake, impact symptom burden and intensity among PLHIV over time. These strategies can be incorporated into ongoing health promotion initiatives in HIV specialty clinics nationwide.}
+{Role: Co-investigator}
+
+
+
+\bigskip
+
+%O'Hara-Tompkins, N. (Principal), Cottrell, L. (Principal), \textbf{Long, D. M.} (Co-Investigator, 10\%), et al.,  ``West Virginia Prevention Research Center-Applied Research Project,'' Sponsored by CDC, Federal, (September 30, 2014 - September 29, 2019).\\
+
+%Saag, M., (Principal), \textbf{Long, D. M.} (Supporting, 20\%), et al.  UAB Center for AIDS Research, Sponsored by NIH (NIAID), Federal, (October 1, 2016 - May 31, 2019).\\
+
+
+
+\section{Previous Funding}
+
+\vspace{-3ex}
+
+Wilson (PI), \textbf{Long, D. M.} (Supporting), et al. ``Adolescent Trials Network Coordinating Center,'' Sponsored by the Eunice Kennedy Shriver National Institute Of Child Health \& Human Development (NICHD) (February 15, 2017 – November 30, 2017).\\
+
+Gurka, M. (Co-Principal), DeBoer, M. (Co-Principal), \textbf{Long, D. M.} (Co-Investigator, 10\%), et al., ``An Ethnicity-Specific MetS Severity Score to Assess Risk: The Jackson Heart Study,'' Sponsored by National Heart, Lung, and Blood Institute (NHLBI), Federal, (August 15, 2014 - October 31 , 2015).\\
+
+O'Hara-Tompkins, N. (Co-Principal), Fitch, C. (Principal), \textbf{Long, D. M.} (Supporting), et al., ``The West Virginia Healthy Children Project,'' Sponsored by the Centers for Disease Control (CDC), Federal,  (October 1, 2014 - September 29, 2017).\\
+
+Hodder, S. (Principal), \textbf{Long, D. M.} (Supporting), et al.,  ``West Virginia IDEA-CTR Clinical Research Design,  Epidemiology, and Biostatistics Program,'' Sponsored by National Institute of General Medical Sciences (NIGMS), Federal. (August 15, 2012 - July 26, 2016).\\
+
+Misra, R (Principal), \textbf{Long, D. M.} (Co-Investigator), et al., ``West Virginia Community Genetics Project,'' Sponsored by National Heart, Lung, and Blood Institute (NHLBI), Federal. (September 24, 2012 - September 23, 2013).\\
+
+\section{Publications (Peer-reviewed)}
+
+\nocite{*} 
+\printbibliography[heading=none]
+%\vspace{-3ex}
+
+\section{Presentations}~~~~~($^\ast$ denotes presenter)\\
+Workman, C., Cottrell, L. A.$^\ast$, Tompkins, N., Jarrett, T., Ludwick, H., Ramsey, Z., Northrup, K., \textbf{Long, D. M.}, ``Assessing Social Determinant Differences in Physical Activity Among Rural Children,'' American Public Health Association Annual Meeting, San Diego, CA. (November 2018)\\ 
+
+Heudebert, J. P.$^\ast$, Tamhane, A., Burkholder, G., Westfall, A. O., \textbf{Long, D. M.}, Dionne-Odom, J., ``\MakeSentenceCase{SEXUALLY TRANSMITTED INFECTION RATES IN MEN WITH {HIV} PRESCRIBED ERECTILE DYSFUNCTION MEDICATION},'' 2018 STD Prevention Conference, Washington, DC. (August 2018)\\
+
+Merlin, J. S.$^\ast$, \textbf{Long, D. M.}, Becker, W., Cachay, E. R., Christopoulos, K. A., Crane, H. M., Edelman, E. J., Harding, R. Liebschutz, J., Mathews, W. C., Mugavero, M. J., Napravnik, S., Saag, M., Starrels, J., Gross, R., ``\MakeSentenceCase{THE ASSOCIATION OF PAIN AND LONG-TERM OPIOID THERAPY WITH HIV TREATMENT OUTCOMES},'' Conference on Retroviruses and Opportunistic Infections (CROI), Seattle, Washington (March 2018)\\
+
+Merlin, J. S.$^\ast$, Westfall, A. O., \textbf{Long, D. M.}, Davies, S., Saag, M., Demonte, W., Young, S., Kerns, R. D., Bair, M. J., Kertesz, S., Turan, J. M., Kilgore, M., Clay, O. J., Starrels, J., Pekmezi, D., Johnson, M. O., ``A Randomized pilot trial of a novel behavioral intervention for chronic pain tailored to individuals with HIV,'' AIDSImpact Conference, Cape Town, South Africa (November 2017)\\
+
+O'Hara Tompkins, N., Cottrell, L., Grant, J., Northrup, K., Ramsey, Z.$^\ast$, \textbf{Long, D. M.}, Bassler, J., ``Physical education and physical activity policy implementation in West Virginia elementary schools,''  American Public Health Association Annual Meeting, Atlanta, GA. (November 2017)\\
+
+Baus, A.$^\ast$, Coben, J. H., Zullig, K., \textbf{Long, D. M.}, Pollard, C., Mullett, C., Jarrett, T., Cochran, J., Taylor, H., ``Modeling Electronic Health Record Data to Identify Older Adults at Risk for Unintentional Falls,''  American Public Health Association Annual Meeting, Atlanta, GA. (November 2017)\\
+
+Hunter, A.$^\ast$,\textbf{Long, D. M.}, Davidov, D., Rockett, I. R. H., ``Comparison of Characteristics of Child Maltreatment Re-report in Periods Before and After CAPTA 2010,''  American Public Health Association Annual Meeting, Atlanta, GA. (November 2017)\\
+
+Hunter, A.$^\ast$,\textbf{Long, D. M.}, Rockett, I. R. H., ``Long Term Effectiveness of Differential Response in Preventing Child Maltreatment Re-Report,'' American Public Health Association Annual Meeting, Denver, CO. (November 2016)\\
+
+\textbf{Long, D. M.}$^\ast$, Wheeler, M., Park, R., Bailer, J., Smith, R., ``Erroneous Hormetic Effect Identification in Cox Models Due to Polynomial Splines,'' 2016 Joint Statistical Meetings, Chicago, IL. (August 2016)\\
+
+O'Hara-Tompkins, N.$^\ast$, Cottrell, L., \textbf{Long, D. M.}, Jarrett, T., Northrup, K.,  ``Move to Achieve: Establishing a Statewide Baseline of Physical Education and Physical Activity Practices and Examining Impact on Elementary Students' Academics and Health,'' American Public Health Association Annual Meeting, Chicago, IL. (November 2015).\\
+ 
+Leung, A.$^\ast$, Con, J., Vaunghan, R., \textbf{Long, D. M.} , Khan, U., Knight, J., Schaefer, G., Wilson, A.,  ``Pediatric Secondary Overtriage in a Statewide Rural Trauma System,'' Templeton Trauma Symposium, Pittsburgh, PA. (March 2015).\\
+ 
+\textbf{Long, D. M.}$^\ast$, Sasala, E. A.,  ``Is More Data Better? Comparison of using entire United States versus West Virginia only responses in predicting county level smoking rates using publicly available data,'' Annual Meeting of the Eastern North American Region of the IBS 2015, Miami, FL. (March 2015).\\
+ 
+Con, J.$^\ast$, \textbf{Long, D. M.}, Sasala, E. A., Kahn, U., Knight, J., Schaefer, G., Wilson, A., ``Factors Associated with Secondary Overtriage in a Statewide Rural Trauma System,'' 10th Annual Academic Surgical Congress, Las Vegas, NV. (February 2015).\\
+ 
+Leung, A.$^\ast$, Con, J., Vaunghan, R., \textbf{Long, D. M.}, Khan, U., Knight, J., Schaefer, G., Wilson, A.,  ``Pediatric Secondary Overtriage in a Statewide Rural Trauma System,'' E.J. Van Liere Memorial Convocation \& HSC Research Day, Morgantown, WV. (February 2015).\\
+ 
+Misra, R.$^\ast$, Dino, G., Frey-McClung, V., Crowder, L., \textbf{Long, D. M.}, Barr, T.,  ``WV GENOME Evaluation of the Surgeon General's Diabetes Risk Family Health History Tool in Rural Patients,'' American Public Health Association Annual Meeting, New Orleans, LA. (November 2014).\\
+ 
+Misra, R.$^\ast$, Dino, G., Crowder, L., Prendergast, L., Frey-McClung, V., \textbf{Long, D. M.} , Mellow, J.  , ``WV GENOME Evaluation of the Surgeon General's Diabetes Risk Family Health History Tool in Rural Patients.,'' American Public Health Association Annual Meeting, New Orleans, LA. (November 2014).\\
+ 
+Misra, R.$^\ast$, Dino, G., Crowder, L., Prendergast, L , Frey-McClung, V , \textbf{Long, D. M.} , Mellow, J. , Diabetes Symposium, ``Evaluation of the Surgeon General's Diabetes Risk Family Health History Tool in Rural Patients.,'' Charleston WV. (October 16, 2014).\\
+ 
+Conway, B.$^\ast$, \textbf{Long, D. M.}, May, M. E., 74th Annual Scientific Sessions of the American Diabetes Association, ``Glycemic Control and Fracture Risk in Geriatric Patients with Diabetes,'' American Diabetes Association, San Francisco. (June 2014).\\
+
+\textbf{Long, D. M.} and Hudgens, M. G.$^\ast$ [Invited], ``Evaluation of Surrogates of Protection in Pre-clinical HIV Vaccine Trials'', Eastern North American Region of the International Biometrics Society, Baltimore, MD. (March 2014).\\
+
+Riffon, M.$^\ast$  and \textbf{Long, D. M.}, ``A simulation study comparing confidence interval calculations for age-adjusted standardized rates'', E.J. Van Liere Memorial Convocation \& HSC Research Day, Morgantown, WV. (February 2014).\\
+
+Misra, R.$^\ast$, Balagopal, P., Raj, S., \textbf{Long, D. M.}, ``Are vegetarian Asian Indians at lower risk for diabetes and metabolic syndrome than non-vegetarians?'', American Public Health Association Annual Meeting, Boston, MA. (November 2013).\\
+
+\textbf{Long, D. M.}$^\ast$ and Hudgens, M. G. ,``Sharpening bounds on principal effects with covariates.'' Eastern North American Region of the International Biometrics Society, Orlando, FL. (March 2013).\\
+
+Bonasso, P.$^\ast$, Riffon, M., Lucke-Wold, B., Knight, J., \textbf{Long, D. M.}, Wilson, A., ``Country Roads take me home: Delay in Trauma Transport during WVU Football games.'' E.J. Van Liere Memorial Convocation \& HSC Research Day. (March 2013). \\
+
+Mallow, J.A., ``Mobile Health (mHealth) applications for Chronic Illness in Rural Healthcare Settings.''  WVU Linking Innovation Industry and Commercialization (LIINC) (member of research team)(February 2013) \\
+
+\textbf{Long, D. M.}$^\ast$ and Hudgens, M. G. ,``Estimating the effect of interventions to prevent postnatal mother-to-child transmission of HIV.'' XIX (19th) International AIDS Conference or AIDS 2012, Washington, DC. (July 2012).\\
+
+\textbf{Long, D. M.}$^\ast$ and Hudgens, M. G. ,``Comparing Competing Risks Outcomes Within Principal Strata.'' Eastern North American
+Region of the International Biometric Society, Miami, Fl., (March 2011).\\
+
+\textbf{Long, D. M.}$^\ast$ and Hudgens, M. G. ,``Comparing Competing Risks Outcomes Within Principal Strata.''  Causal Inference Research Group, UNC-Chapel Hill, (May 2011).\\
+
+Long, D. L., Preisser, J. S., Phillips, C., \textbf{Long, D. M.}$^\ast$,  ``A Quasi-Likelihood Analysis of Patient Satisfaction following Orthognathic Surgery'' 2010 Joint Statistical Meetings (August 2010)  \\
+
+Chasela, C. $^\ast$, Hudgens, M., Jamieson, D., Martinson, F.,  Kazembe, P., Mofolo, I., \textbf{Long, D. M.}, Soko, A., Smith, S.B., and van der Horst, C., ``Both maternal HAART and daily infant nevirapine (NVP) are effective in reducing HIV-1 transmission during breastfeeding in a randomized trial in Malawi: 28 week results of the Breastfeeding, Antiretroviral and Nutrition (BAN) Study, ''5th IAS Conference on HIV Pathogenesis, Treatment and Prevention: Cape Town, South Africa. WELBC103, 2009. 
+
+
+%
+%\section{Contracts and Grants}
+
+%\textit Co-investigator, ``The West Virginia Community Genetics Family Health History Awareness Project'',National Human genome Research Institute, PI: Taura Barr 9/24/2012-9/23/2013, \$99,000 total
+
+\section{Memberships}
+%
+\begin{outerlist}\item[]
+\begin{innerlist}
+ \item American Statistical Association
+ %\item Institute for Mathematical Statistics
+ \item International Biometric Society (Eastern North American Region (ENAR))
+\end{innerlist}
+\end{outerlist}
+
+\section{Service: Students Advised}
+\begin{outerlist}\item Active
+\begin{innerlist}
+\item Audrey Moore, PhD (UAB)
+\item Mei Li, MSPH (UAB)
+\item Jiaying Hao, MS (UAB)
+\end{innerlist}
+\item Complete
+\begin{innerlist}
+\item John Bassler (MS WVU), Lucas Moore (MS WVU), Emily Sasala (MS WVU), Mark Riffon (MPH WVU)
+\end{innerlist}
+\end{outerlist}
+
+
+\section{Service: Committee}
+\begin{outerlist}
+\item Doctoral (Active)
+\begin{innerlist} 
+\item Mohammed Alqahtani (Rehabilitation Sciences, UAB)
+\item Lindsey Elliott (Clinical Psychology, UAB)
+\end{innerlist}
+\item Doctoral (Complete)
+\begin{innerlist}
+\item Traci LeMasters (Pharmacy, WVU)
+\item Adam Baus (Public Health Sciences (Social and Behavioral Sciences), WVU)
+\item Amy Hunter (Epidemiology, WVU)
+\end{innerlist}
+\item[]Master's (Complete)
+\begin{innerlist}
+\item Yue May Zhang (MS Biostatistics, UAB)
+\end{innerlist}
+\item[]Master's (Active)
+\begin{innerlist}
+\item Mei Li, MSPH, Jiaying Hao, MS (Biostatistics, UAB)
+\item Stager, Lindsay (Psychology, UAB)
+\end{innerlist}
+\end{outerlist}
+
+\section{Service: Reviewer}
+\begin{outerlist}\item Manuscripts
+\begin{innerlist}
+\item \textit{Journal of Research on Educational Effectiveness}
+\item \textit{Journal of AIDS and HIV Research (JAHR)}
+\item \textit{Biometrics}
+\item \textit{Journal of the American Board of Family Medicine (JABFM)}
+\item \textit{Trials}
+\item \textit{Statistics in Medicine}
+\end{innerlist}
+\item Grants
+\begin{innerlist}
+\item Congressionally Directed Medical Research Programs (CDMRP), 2015-2018
+\item UAB CFAR Developmental Core Pilot Program, 2017-present
+\item West Virginia Clinical and Translational Sciences Pilot Grant Program, 2015
+\end{innerlist}
+\end{outerlist}
+
+\section{Service: Faculty Engagement}
+%
+{University of Alabama at Birmingham}
+\begin{outerlist}\item[]
+\begin{innerlist}
+%\item Coordinator of the Master's Programs in Biostatistics, July 2013 to present
+\item Department of Biostatistics Recruitment and Retention Committee, 2017 to present
+\item Department of Biostatistics Comprehensive/Qualifying Exam Committee, 2017 to present
+\item School of Public Health Admissions and Graduation Committee, 2017 to present
+\item School of Public Health Scholorship Committee, 2018 to present
+\item School of Public Health Educational Policy Committee (Biostatistics alternate), 2017 to present 
+\item Center for AIDS Research Executive Committee, 2016 to present\\
+\end{innerlist}
+\end{outerlist}
+
+
+{West Virginia University}
+\begin{outerlist}\item[]
+\begin{innerlist}
+%\item Coordinator of the Master's Programs in Biostatistics, July 2013 to present
+\item School of Public Health Information Technology Committee (2012-2016)
+\item School of Public Health Student Outreach and Recruitment (2013-2016)
+\item School of Public Health MPH Student Poster Evaluator (2012-2016)
+\item Judge, \href{http://www.hsc.wvu.edu/wvucn/Events/2015/2015-Van-Liere-Convocation-HSC-Research-Day}{Van Liere Convocation \& HSC Research Day}, 2014, 2015
+\item University-wide Academic Computing Advisory Committee
+\item School of Public Health Dean's Council, Biostatistics Representative (October 2015 to July 2016)
+\end{innerlist}
+\end{outerlist}
+
+
+%{University of North Carolina at Chapel Hill}
+%\begin{outerlist}\item[]
+%\begin{innerlist}
+%\item 2011-2012 Organizer, Causal Inference Research Group (CIRG)
+%\item JSM 2011 Stat Bowl Team Champion, as member of UNC Biostatistics team
+%\item JSM 2010 Stat Bowl Semi-finalist
+%\item Student Representative to Graduate Admissions Committee 
+%\item Student Representative to $60^{th}$ Anniversary Committee 
+%\item Student Representative to BIOS Information Technology Committee 
+%\item Biostatistics Student Association Treasurer, 2006-2012
+%\end{innerlist}
+%\end{outerlist}
+
+
+\end{document}
+
