@@ -15,7 +15,7 @@ jobs:
       uses: xu-cheng/latex-action@v2
       with:
           # The root LaTeX file to be compiled
-          root_file: CV.tex
+          root_file: DMLong_CV.tex
 
           # Interpret the root_file input as bash glob pattern
           # glob_root_file: # optional
@@ -52,13 +52,13 @@ jobs:
 
     - name: Check pdf file
       run: |
-        file CV.pdf | grep -q ' PDF '
+        file DMLong_CV.pdf | grep -q ' PDF '
 
     - name: Upload file to repository
       run: |
         git config --global user.name "DustinMlong"
         git config --global user.email "dustinlong318@gmail.com"
-        git add CV.pdf
+        git add DMLong_CV.pdf
         git commit -m "commit message"
         git push
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
