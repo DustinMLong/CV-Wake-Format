@@ -52,13 +52,13 @@ jobs:
 
     - name: Check pdf file
       run: |
-        file DMLong_CV.pdf | grep -q ' PDF '
+        file CV.pdf | grep -q ' PDF '
 
     - name: Upload file to repository
       run: |
         git config --global user.name "DustinMlong"
         git config --global user.email "dustinlong318@gmail.com"
-        git add DMLong_CV.pdf
+        git add CV.pdf
         git commit -m "commit message"
         git push
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -66,7 +66,7 @@ jobs:
     - name: Push generated webpage to another repository
       uses: nkoppel/push-files-to-another-repository@v1.1.3
       with:
-          source-files: 'DMLong_CV.pdf'
+          source-files: 'CV.pdf'
           destination-username: 'DustinMLong'
           destination-repository: 'dustinmlong'
           destination-directory: 'files'
