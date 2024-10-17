@@ -54,8 +54,8 @@ jobs:
       run: |
         file DMLong_CV.pdf | grep -q ' PDF '
 
- - name: Push generated webpage to another repository
-        with:
+    - name: Push generated webpage to another repository
+      with:
           source-files: 'DMLong_CV.pdf'
           destination-username: 'DustinMLong'
           destination-repository: 'dustinmlong'
