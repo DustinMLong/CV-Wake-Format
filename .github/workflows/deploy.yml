@@ -20,12 +20,12 @@ jobs:
           root_file: CV.tex
       - name: Copy
         run: |
-          mkdir out
-          cp ./CV.pdf ./out/CV.pdf
+          mkdir CV
+          cp ./CV.pdf ./CV/CV.pdf
       - uses: actions/upload-artifact@v4
         with:
           name: CV
-          path: out/CV.pdf
+          path: CV/CV.pdf
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
